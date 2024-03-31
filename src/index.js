@@ -2,6 +2,7 @@ const express = require("express");
 const {PORT} = require("./config/server.config");
 const bodyParser = require("body-parser");
 const {apiRouter} = require("./routes");
+const errorHandler = require("./utils/errorHandler");
 
 
 
@@ -19,6 +20,9 @@ app.get("/health",(req,res)=>{
         msg: "Problem Service is healthy",
       });
 })
+
+//error handler should be the last middleware
+app.use(errorHandler);
 
 
 app.listen(PORT,()=>{
