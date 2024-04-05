@@ -1,5 +1,6 @@
 const express = require("express");
 const {PORT} = require("./config/server.config");
+const connectToDB = require("./config/db.config");
 const bodyParser = require("body-parser");
 const {apiRouter} = require("./routes");
 const errorHandler = require("./utils/errorHandler");
@@ -25,6 +26,8 @@ app.get("/health",(req,res)=>{
 app.use(errorHandler);
 
 
-app.listen(PORT,()=>{
+app.listen(PORT,async ()=>{
     console.log(`Server started at port: ${PORT}`);
+    await connectToDB();
+    console.log("successfully connected to db");
 });
