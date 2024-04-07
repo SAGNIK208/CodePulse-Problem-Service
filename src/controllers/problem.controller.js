@@ -57,7 +57,7 @@ async function addProblem(req, res,next) {
 async function deleteProblem(req, res,next) {
     try {
         const problemId = req.params.id;
-        const response = await problemService.getProblem(problemId);
+        const response = await problemService.deleteProblem(problemId);
         return res.status(StatusCodes.OK).json({
             success: true,
             message: 'Successfully deleted the problem',
@@ -71,12 +71,14 @@ async function deleteProblem(req, res,next) {
 
 async function updateProblem(req, res,next) {
     try {
-        const newproblem = await problemService.createProblem(req.body);
+        const problemId = req.params.id;
+        const updatedProblem = req.body;
+        const problem = await problemService.updateProblem(problemId,updatedProblem);
         return res.status(StatusCodes.CREATED).json({
             success: true,
             message: 'Successfully updated a problem',
             error: {},
-            data: newproblem
+            data: problem
         })
     } catch(error) {
         next(error);

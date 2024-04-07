@@ -9,7 +9,7 @@ class ProblemService {
 
     async createProblem(problemData) {
         problemData.description = markdownSanitize(problemData.description);
-        
+
         const problem = await this.problemRepository.createProblem(problemData);
 
         return problem;
@@ -21,7 +21,7 @@ class ProblemService {
     }
 
     async getProblem(problemId) {
-        const problem = await this.problemRepository.getProblem(problemId);
+        const problem = await this.problemRepository.getProblemById(problemId);
         if(!problem){
             throw new NotFound("Problem",problemId);
         }
@@ -29,15 +29,15 @@ class ProblemService {
     }
 
     async deleteProblem(problemId){
-        const problem = await this.problemRepository.deleteProblem(problemId);
+        const problem = await this.problemRepository.deleteProblemById(problemId);
         if(!problem){
             throw new NotFound("Problem",problemId);
         }
         return problem;
     }
 
-    async updateProblem(problemId){
-        const problem = await this.problemRepository.updateProblem(problemId);
+    async updateProblem(problemId,problemData){
+        const problem = await this.problemRepository.updateProblemById(problemId,problemData);
         if(!problem){
             throw new NotFound("Problem",problemId);
         }
