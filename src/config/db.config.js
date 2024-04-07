@@ -5,7 +5,6 @@ const {DB_NAME} = require("../constants");
 async function connectToDB(){
     try {
         if(NODE_ENV == 'dev'){
-            console.log(ATLAS_DB_URL+`${DB_NAME}`);
             await mongoose.connect(ATLAS_DB_URL+`${DB_NAME}`);
         }
     } catch (error) {
