@@ -58,6 +58,6 @@ class ProblemRepository{
         }
     }
 
-
-
 }
+
+module.exports = ProblemRepository;
