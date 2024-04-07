@@ -8,8 +8,8 @@ class ProblemService {
     }
 
     async createProblem(problemData) {
-        problemData.description = sanitizeMarkdownContent(problemData.description);
-
+        problemData.description = markdownSanitize(problemData.description);
+        
         const problem = await this.problemRepository.createProblem(problemData);
 
         return problem;

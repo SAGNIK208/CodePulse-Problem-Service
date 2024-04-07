@@ -4,14 +4,15 @@ const TurndownService = require("turndown");
 
 
 function sanitizedMarkedDown(markedDown){
-    
+    const turndownService = new TurndownService();
+
     const html = marked.parse(markedDown);
 
     const sanitizeHtml = santizeHtmlLibrary(html,{
-        allowedTags : santizeHtmlLibrary.defaults.allowedTags.concat("img")
+        allowedTags : santizeHtmlLibrary.defaults.allowedTags.concat(['img'])
     });
 
-    const sanitizedMarkedDown = TurndownService.turndown(sanitizeHtml);
+    const sanitizedMarkedDown = turndownService.turndown(sanitizeHtml);
 
     return sanitizedMarkedDown;
 
