@@ -1,5 +1,6 @@
 const {markdownSanitize} = require("../utils");
 const {NotFound}=require("../errors");
+const logger = require("../config/logger.config");
 
 class ProblemService {
 
