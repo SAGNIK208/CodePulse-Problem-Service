@@ -1,6 +1,7 @@
 const {StatusCodes} = require("http-status-codes");
 const {ProblemRepository} = require("../repositories");
 const {ProblemService} = require("../services");
+const logger = require("../config/logger.config");
 
 const problemService = new ProblemService(new ProblemRepository());
 
@@ -42,6 +43,7 @@ async function getProblem(req, res,next) {
 
 async function addProblem(req, res,next) {
     try {
+        logger.info(`New Problem Request ${JSON.stringify(req.body)}`);
         const newproblem = await problemService.createProblem(req.body);
         return res.status(StatusCodes.CREATED).json({
             success: true,
@@ -73,6 +75,7 @@ async function updateProblem(req, res,next) {
     try {
         const problemId = req.params.id;
         const updatedProblem = req.body;
+        logger.info(`Updated Problem Request ${JSON.stringify(updatedProblem)}`);
         const problem = await problemService.updateProblem(problemId,updatedProblem);
         return res.status(StatusCodes.CREATED).json({
             success: true,
