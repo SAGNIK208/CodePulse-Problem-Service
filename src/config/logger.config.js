@@ -18,7 +18,7 @@ allowedTransports.push(new winston.transports.Console({
 allowedTransports.push(new winston.transports.MongoDB({
     level: 'error',
     db: LOG_DB_URL,
-    collection: 'logs',
+    collection: 'problem_service_logs',
 }))
 
 
